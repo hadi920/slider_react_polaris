@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Card,
-  Stack,
-  Button,
-  Text,
-  TextContainer,
-  Icon,
-} from "@shopify/polaris";
+import { Card, Button, Text, TextContainer, Icon } from "@shopify/polaris";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
