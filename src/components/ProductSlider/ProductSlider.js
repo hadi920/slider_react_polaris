@@ -81,7 +81,7 @@ function FeaturedProductSlider() {
   const settings = {
     dots: false,
     infinite: false,
-    speed: 300,
+    speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
     afterChange: (current) => setCurrentSlide(current),

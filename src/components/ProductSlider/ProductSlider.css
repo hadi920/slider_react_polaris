@@ -1,11 +1,11 @@
 .mainCard .Polaris-Card {
   margin: 0 10px;
+  box-shadow: none;
 }
 
 .mainCard {
   margin-right: 5px;
   border: none;
-  box-shadow: none;
 }
 
 .cartButton .Polaris-Button--fullWidth {
@@ -56,4 +56,14 @@
   bottom: 125px;
   right: -10px;
   cursor: pointer;
+}
+
+.Polaris-Icon__Svg {
+  fill: white;
+}
+
+.slick-next:before,
+.slick-prev:before {
+  opacity: 0;
+  display: none;
 }
