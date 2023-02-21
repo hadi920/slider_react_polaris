@@ -65,7 +65,7 @@ function FeaturedProductSlider() {
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
   const next = () => {
-    if (currentSlide != products.length - 5) {
+    if (currentSlide !== products.length - 5) {
       sliderRef.current.slickNext();
       setCurrentSlide(currentSlide + 1);
     }
