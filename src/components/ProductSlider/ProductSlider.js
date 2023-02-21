@@ -3,7 +3,7 @@ import { Card, Button, Text, TextContainer, Icon } from "@shopify/polaris";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import bgImg from "../../assets/bg.jpg";
+import bgImg from "../../assets/product.png";
 import "@shopify/polaris/build/esm/styles.css";
 import "./ProductSlider.css";
 import { ChevronLeftMinor, ChevronRightMinor } from "@shopify/polaris-icons";
@@ -62,21 +62,29 @@ function FeaturedProductSlider() {
   ];
 
   const sliderRef = React.useRef();
+  const [currentSlide, setCurrentSlide] = React.useState(0);
 
   const next = () => {
-    sliderRef.current.slickNext();
+    if (currentSlide != products.length - 5) {
+      sliderRef.current.slickNext();
+      setCurrentSlide(currentSlide + 1);
+    }
   };
 
   const previous = () => {
-    sliderRef.current.slickPrev();
+    if (currentSlide > 0) {
+      sliderRef.current.slickPrev();
+      setCurrentSlide(currentSlide - 1);
+    }
   };
 
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
+    speed: 300,
     slidesToShow: 5,
     slidesToScroll: 1,
+    afterChange: (current) => setCurrentSlide(current),
   };
 
   return (
@@ -97,17 +105,23 @@ function FeaturedProductSlider() {
                   style={{ width: "100%", height: "140px" }}
                 />
                 <TextContainer spacing="tight">
-                  <div style={{ marginTop: "5px" }}>
+                  <div style={{ marginTop: "5px", marginLeft: "3px" }}>
                     <Text variant="headingSm" as="h6" fontWeight="semibold">
                       {product.title}
                     </Text>
                   </div>
-                  <div style={{ color: "#84B394" }}>
+                  <div style={{ color: "#84B394", marginLeft: "3px" }}>
                     <Text variant="headingXs" as="p" fontWeight="regular">
                       {product.description}
                     </Text>
                   </div>
-                  <div style={{ color: "#989AFB", marginBottom: "5px" }}>
+                  <div
+                    style={{
+                      color: "#989AFB",
+                      marginBottom: "5px",
+                      marginLeft: "3px",
+                    }}
+                  >
                     <Text variant="headingSm" as="h6">
                       ${product.price}
                     </Text>
