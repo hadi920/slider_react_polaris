@@ -1,0 +1,59 @@
+.mainCard .Polaris-Card {
+  margin: 0 10px;
+}
+
+.mainCard {
+  margin-right: 5px;
+  border: none;
+  box-shadow: none;
+}
+
+.cartButton .Polaris-Button--fullWidth {
+  background-color: #8d5a33;
+  border-radius: 0;
+  border: none;
+  color: white;
+}
+
+.prevButton {
+  position: relative;
+  cursor: pointer;
+}
+
+.innerPrevButton {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #8d5a33;
+  z-index: 10;
+  top: 90px;
+  left: -10px;
+  cursor: pointer;
+}
+
+.innerButton .Polaris-Icon__Svg {
+  background: white;
+}
+
+.nextButton {
+  position: relative;
+  cursor: pointer;
+}
+.innerNextButton {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #8d5a33;
+  z-index: 10;
+  bottom: 125px;
+  right: -10px;
+  cursor: pointer;
+}
