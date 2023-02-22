@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card, Button, Text, TextContainer, Icon } from "@shopify/polaris";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -62,43 +62,7 @@ function FeaturedProductSlider() {
   ];
 
   const sliderRef = React.useRef();
-  const [currentSlide, setCurrentSlide] = React.useState(0);
-  const [numberOfSlides, setNumberOfSlides] = useState(5);
-  const [windowSize, setWindowSize] = useState([
-    window.innerWidth,
-    window.innerHeight,
-  ]);
-
-  const checkWindowSize = (size) => {
-    console.log("HERE1", size);
-    if (size[0] > 1021) {
-      setNumberOfSlides(5);
-    }
-    if (size[0] < 1021 && size[0] > 741) {
-      setNumberOfSlides(4);
-    }
-    if (size[0] < 741 && size[0] > 573) {
-      setNumberOfSlides(3);
-    }
-    if (size[0] < 573 && size[0] > 490) {
-      setNumberOfSlides(2);
-    }
-    if (size[0] < 490) {
-      setNumberOfSlides(1);
-    }
-  };
-
-  // useEffect(() => {
-  //   const handleWindowResize = () => {
-  //     setWindowSize([window.innerWidth, window.innerHeight]);
-  //     checkWindowSize(windowSize);
-  //     console.log(numberOfSlides);
-  //   };
-  //   window.addEventListener("resize", handleWindowResize);
-  //   return () => {
-  //     window.removeEventListener("resize", handleWindowResize);
-  //   };
-  // }, [numberOfSlides, windowSize]);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const next = () => {
     sliderRef.current.slickNext();
