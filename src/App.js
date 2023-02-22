@@ -6,9 +6,11 @@ import ProductSlider from "./components/ProductSlider/ProductSlider";
 function App() {
   return (
     <AppProvider i18n={enTranslations}>
-      <Page title="You May Also Like">
-        <ProductSlider />
-      </Page>
+      <div className="mainSliderContainer">
+        <Page title="You May Also Like">
+          <ProductSlider />
+        </Page>
+      </div>
     </AppProvider>
   );
 }
