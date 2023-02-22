@@ -101,7 +101,7 @@ function FeaturedProductSlider() {
         },
       },
       {
-        breakpoint: 415,
+        breakpoint: 425,
         settings: {
           slidesToShow: 1,
         },
@@ -123,9 +123,9 @@ function FeaturedProductSlider() {
               <div key={product.id} className="mainCard">
                 <Card>
                   <img
+                    className="productImage"
                     src={product.image}
                     alt={product.title}
-                    style={{ width: "100%", height: "140px" }}
                   />
                   <TextContainer spacing="tight">
                     <div style={{ marginTop: "5px", marginLeft: "3px" }}>
