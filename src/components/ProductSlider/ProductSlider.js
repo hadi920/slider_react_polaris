@@ -74,13 +74,13 @@ function FeaturedProductSlider() {
     if (size[0] > 1021) {
       setNumberOfSlides(5);
     }
-    if (size[0] < 1021) {
+    if (size[0] < 1021 && size[0] > 741) {
       setNumberOfSlides(4);
     }
-    if (size[0] < 741) {
+    if (size[0] < 741 && size[0] > 573) {
       setNumberOfSlides(3);
     }
-    if (size[0] < 573) {
+    if (size[0] < 573 && size[0] > 490) {
       setNumberOfSlides(2);
     }
     if (size[0] < 490) {
@@ -88,17 +88,17 @@ function FeaturedProductSlider() {
     }
   };
 
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setWindowSize([window.innerWidth, window.innerHeight]);
-      checkWindowSize(windowSize);
-      console.log(numberOfSlides);
-    };
-    window.addEventListener("resize", handleWindowResize);
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, [numberOfSlides, windowSize]);
+  // useEffect(() => {
+  //   const handleWindowResize = () => {
+  //     setWindowSize([window.innerWidth, window.innerHeight]);
+  //     checkWindowSize(windowSize);
+  //     console.log(numberOfSlides);
+  //   };
+  //   window.addEventListener("resize", handleWindowResize);
+  //   return () => {
+  //     window.removeEventListener("resize", handleWindowResize);
+  //   };
+  // }, [numberOfSlides, windowSize]);
 
   const next = () => {
     sliderRef.current.slickNext();
@@ -114,9 +114,35 @@ function FeaturedProductSlider() {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: numberOfSlides,
+    slidesToShow: 5,
     slidesToScroll: 1,
     afterChange: (current) => setCurrentSlide(current),
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 415,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
