@@ -89,13 +89,13 @@ function FeaturedProductSlider() {
         },
       },
       {
-        breakpoint: 992,
+        breakpoint: 850,
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 600,
         settings: {
           slidesToShow: 2,
         },
