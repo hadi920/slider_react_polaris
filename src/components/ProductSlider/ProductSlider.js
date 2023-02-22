@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Button, Text, TextContainer, Icon } from "@shopify/polaris";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -63,26 +63,58 @@ function FeaturedProductSlider() {
 
   const sliderRef = React.useRef();
   const [currentSlide, setCurrentSlide] = React.useState(0);
+  const [numberOfSlides, setNumberOfSlides] = useState(5);
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
 
-  const next = () => {
-    if (currentSlide !== products.length - 5) {
-      sliderRef.current.slickNext();
-      setCurrentSlide(currentSlide + 1);
+  const checkWindowSize = (size) => {
+    console.log("HERE1", size);
+    if (size[0] > 1021) {
+      setNumberOfSlides(5);
+    }
+    if (size[0] < 1021) {
+      setNumberOfSlides(4);
+    }
+    if (size[0] < 741) {
+      setNumberOfSlides(3);
+    }
+    if (size[0] < 573) {
+      setNumberOfSlides(2);
+    }
+    if (size[0] < 490) {
+      setNumberOfSlides(1);
     }
   };
 
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+      checkWindowSize(windowSize);
+      console.log(numberOfSlides);
+    };
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [numberOfSlides, windowSize]);
+
+  const next = () => {
+    sliderRef.current.slickNext();
+    setCurrentSlide(currentSlide + 1);
+  };
+
   const previous = () => {
-    if (currentSlide > 0) {
-      sliderRef.current.slickPrev();
-      setCurrentSlide(currentSlide - 1);
-    }
+    sliderRef.current.slickPrev();
+    setCurrentSlide(currentSlide - 1);
   };
 
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: numberOfSlides,
     slidesToScroll: 1,
     afterChange: (current) => setCurrentSlide(current),
   };
@@ -95,47 +127,49 @@ function FeaturedProductSlider() {
             <Icon source={ChevronLeftMinor} color="white" />
           </div>
         </div>
-        <Slider ref={sliderRef} {...settings}>
-          {products.map((product) => (
-            <div key={product.id} className="mainCard">
-              <Card>
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  style={{ width: "100%", height: "140px" }}
-                />
-                <TextContainer spacing="tight">
-                  <div style={{ marginTop: "5px", marginLeft: "3px" }}>
-                    <Text variant="headingSm" as="h6" fontWeight="semibold">
-                      {product.title}
-                    </Text>
+        <div className="slider">
+          <Slider ref={sliderRef} {...settings}>
+            {products.map((product) => (
+              <div key={product.id} className="mainCard">
+                <Card>
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    style={{ width: "100%", height: "140px" }}
+                  />
+                  <TextContainer spacing="tight">
+                    <div style={{ marginTop: "5px", marginLeft: "3px" }}>
+                      <Text variant="headingSm" as="h6" fontWeight="semibold">
+                        {product.title}
+                      </Text>
+                    </div>
+                    <div style={{ color: "#84B394", marginLeft: "3px" }}>
+                      <Text variant="headingXs" as="p" fontWeight="regular">
+                        {product.description}
+                      </Text>
+                    </div>
+                    <div
+                      style={{
+                        color: "#989AFB",
+                        marginBottom: "5px",
+                        marginLeft: "3px",
+                      }}
+                    >
+                      <Text variant="headingSm" as="h6">
+                        ${product.price}
+                      </Text>
+                    </div>
+                  </TextContainer>
+                  <div className="cartButton">
+                    <Button fullWidth outline={false}>
+                      Add to Cart
+                    </Button>
                   </div>
-                  <div style={{ color: "#84B394", marginLeft: "3px" }}>
-                    <Text variant="headingXs" as="p" fontWeight="regular">
-                      {product.description}
-                    </Text>
-                  </div>
-                  <div
-                    style={{
-                      color: "#989AFB",
-                      marginBottom: "5px",
-                      marginLeft: "3px",
-                    }}
-                  >
-                    <Text variant="headingSm" as="h6">
-                      ${product.price}
-                    </Text>
-                  </div>
-                </TextContainer>
-                <div className="cartButton">
-                  <Button fullWidth outline={false}>
-                    Add to Cart
-                  </Button>
-                </div>
-              </Card>
-            </div>
-          ))}
-        </Slider>
+                </Card>
+              </div>
+            ))}
+          </Slider>
+        </div>
         <div className="nextButton">
           <div className="innerNextButton" onClick={next}>
             <Icon source={ChevronRightMinor} color="white" />
